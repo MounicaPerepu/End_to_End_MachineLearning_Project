@@ -32,7 +32,7 @@ class DataTransformation:
             logging.info("Numerical columns scaling completed")
             categorical_pipeline=Pipeline(steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder()),
+                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore")),
                 ("standard_scaler",StandardScaler(with_mean=False))
             ])
             logging.info("Categorical columns encoding completed")

@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from src.exception import CustomException
 from src.logger import logging
+import pickle
 import dill
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
@@ -39,5 +40,13 @@ def evaluate_models(X_train,y_train,X_test,y_test,models,params):
     except Exception as e:
         raise CustomException(e,sys)
 
+def load_object(file_path):
+    try:
+        logging.info("Entered the load object method")
+        with open(file_path,'rb') as file:
+            return pickle.load(file)
+        logging.info("Object loaded successfully")
+    except Exception as e:
+        raise CustomException(e,sys)
 
 
